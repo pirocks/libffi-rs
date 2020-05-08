@@ -370,7 +370,7 @@ pub unsafe fn call<R>(cif:  *mut ffi_cif,
 pub fn closure_alloc() -> (*mut ffi_closure, CodePtr) {
     unsafe {
         let mut code_pointer = mem::MaybeUninit::<*mut c_void>::uninit();
-        let closure = raw::ffi_closure_alloc(mem::size_of::<ffi_closure>(),
+        let closure = raw::ffi_closure_alloc(mem::size_of::<ffi_closure>().try_into().unwrap(),
                                              code_pointer.as_mut_ptr());
         (closure as *mut ffi_closure, CodePtr::from_ptr(code_pointer.assume_init()))
     }
