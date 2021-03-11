@@ -33,7 +33,7 @@ pub use builder::Builder;
 /// struct accomplishes the necessary coercion.
 #[derive(Clone, Debug)]
 #[repr(C)]
-pub struct Arg(*mut c_void);
+pub struct Arg(pub *mut c_void);
 
 impl Arg {
     /// Coerces an argument reference into the `Arg` type.
